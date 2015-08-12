@@ -20,6 +20,8 @@ getDuration('audio.mp3').then(function (duration) {
 })
 ```
 
+Based on [get-video-dimensions](https://github.com/mgmtio/get-video-dimensions).
+
 [gitter-image]: https://badges.gitter.im/caffco/get-audio-duration.png
 [gitter-url]: https://gitter.im/caffco/get-audio-duration
 [npm-image]: https://img.shields.io/npm/v/get-audio-duration.svg?style=flat-square
@@ -36,5 +38,3 @@ getDuration('audio.mp3').then(function (duration) {
 [license-url]: LICENSE
 [downloads-image]: http://img.shields.io/npm/dm/get-audio-duration.svg?style=flat-square
 [downloads-url]: https://npmjs.org/package/get-audio-duration
-[gittip-image]: https://img.shields.io/gratipay/jonathanong.svg?style=flat-square
-[gittip-url]: https://gratipay.com/jonathanong/
