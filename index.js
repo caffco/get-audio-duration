@@ -12,6 +12,6 @@ module.exports = function ( filename ) {
 		var stdout = out[ 0 ].toString( 'utf8' );
 		var duration = /duration=\"(\d*\.\d*)\"/.exec( stdout );
 		assert( duration, 'No duration found!' );
-		return parseFloat( duration );
+		return parseFloat( duration[ 1 ] );
 	} );
 };
