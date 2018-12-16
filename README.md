@@ -9,7 +9,7 @@
 [![NPM bundle size (minified)][bundle-size-image]][npm-url]
 [![Downloads][downloads-image]][downloads-url]
 
-Get the duration of video files/streams with `ffprobe`.
+Get the duration of audio files/streams with `ffprobe`.
 
 # Install
 
