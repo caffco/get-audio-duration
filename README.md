@@ -3,37 +3,52 @@
 
 [![NPM version][npm-image]][npm-url]
 [![Build status][travis-image]][travis-url]
-[![Test coverage][coveralls-image]][coveralls-url]
+[![Test coverage][codecov-image]][codecov-url]
 [![Dependency Status][david-image]][david-url]
 [![License][license-image]][license-url]
+[![NPM bundle size (minified)][bundle-size-image]][npm-url]
 [![Downloads][downloads-image]][downloads-url]
 
-Get the duration of an audio with `ffprobe`.
-Requires the `ffprobe` binary installed.
+Get the duration of video files/streams with `ffprobe`.
+
+# Install
+
+```bash
+$ npm install --save get-audio-duration
+```
+
+# Usage
 
 ```js
-var getDuration = require('get-audio-duration');
+const { getAudioDurationInSeconds } = require('get-audio-duration')
 
-getDuration('audio.mp3').then(function (duration) {
-  console.log(duration);
+// From a local path...
+getAudioDurationInSeconds('audio.flac').then((duration) => {
+  console.log(duration)
+})
+
+// From a readable stream...
+
+const fs = require('fs')
+const stream = fs.createReadStream('audio.flac')
+
+getAudioDurationInSeconds(stream).then((duration) => {
+  console.log(duration)
 })
 ```
 
-Based on [get-video-dimensions](https://github.com/mgmtio/get-video-dimensions).
+# License
 
-[gitter-image]: https://badges.gitter.im/caffco/get-audio-duration.png
-[gitter-url]: https://gitter.im/caffco/get-audio-duration
-[npm-image]: https://img.shields.io/npm/v/get-audio-duration.svg?style=flat-square
+[npm-image]: https://img.shields.io/npm/v/get-audio-duration.svg
 [npm-url]: https://npmjs.org/package/get-audio-duration
-[github-tag]: http://img.shields.io/github/tag/caffco/get-audio-duration.svg?style=flat-square
-[github-url]: https://github.com/caffco/get-audio-duration/tags
-[travis-image]: https://img.shields.io/travis/caffco/get-audio-duration.svg?style=flat-square
+[bundle-size-image]: https://img.shields.io/bundlephobia/min/get-audio-duration.svg
+[travis-image]: https://img.shields.io/travis/caffco/get-audio-duration.svg
 [travis-url]: https://travis-ci.org/caffco/get-audio-duration
-[coveralls-image]: https://img.shields.io/coveralls/caffco/get-audio-duration.svg?style=flat-square
-[coveralls-url]: https://coveralls.io/r/caffco/get-audio-duration
-[david-image]: http://img.shields.io/david/caffco/get-audio-duration.svg?style=flat-square
+[codecov-image]: https://codecov.io/gh/caffco/get-audio-duration/branch/master/graph/badge.svg
+[codecov-url]: https://codecov.io/gh/caffco/get-audio-duration
+[david-image]: http://img.shields.io/david/caffco/get-audio-duration.svg
 [david-url]: https://david-dm.org/caffco/get-audio-duration
-[license-image]: http://img.shields.io/npm/l/get-audio-duration.svg?style=flat-square
+[license-image]: http://img.shields.io/npm/l/get-audio-duration.svg
 [license-url]: LICENSE
-[downloads-image]: http://img.shields.io/npm/dm/get-audio-duration.svg?style=flat-square
+[downloads-image]: http://img.shields.io/npm/dm/get-audio-duration.svg
 [downloads-url]: https://npmjs.org/package/get-audio-duration

@@ -1,30 +1,57 @@
 {
-	"name": "get-audio-duration",
-	"description": "Get the duration of an audio",
-	"version": "0.0.1",
-	"author": "Lluís Ulzurrun de Asanza Sàez <me@llu.is> (http://llu.is)",
-	"license": "MIT",
-	"repository": "caffco/get-audio-duration",
-	"dependencies": {
-		"mz": "^1.2.1"
-	},
-	"devDependencies": {
-		"bluebird": "^2.9.6",
-		"istanbul": "0",
-		"mocha": "2"
-	},
-	"scripts": {
-		"test": "mocha",
-		"test-cov": "istanbul cover node_modules/mocha/bin/_mocha -- --reporter dot",
-		"test-travis": "istanbul cover node_modules/mocha/bin/_mocha --report lcovonly -- --reporter dot"
-	},
-	"keywords": [
-		"audio",
-		"duration",
-		"ffmpeg",
-		"ffprobe"
-	],
-	"files": [
-		"index.js"
-	]
+  "name": "get-audio-duration",
+  "description": "Get the duration of an audio file",
+  "version": "0.0.1",
+  "author": "Lluís Ulzurrun de Asanza Sàez <me@llu.is> (http://llu.is)",
+  "license": "MIT",
+  "repository": "caffco/get-audio-duration",
+  "main": "dist/commonjs/index.js",
+  "module": "dist/es6/index.js",
+  "dependencies": {
+    "execa": "^1.0.0",
+    "ffprobe-static": "^3.0.0",
+    "is-stream": "^1.1.0"
+  },
+  "devDependencies": {
+    "@types/chai": "^4.1.7",
+    "@types/chai-as-promised": "^7.1.0",
+    "@types/execa": "^0.9.0",
+    "@types/ffprobe-static": "^2.0.0",
+    "@types/is-stream": "^1.1.0",
+    "@types/mocha": "^5.2.5",
+    "@types/tmp": "^0.0.33",
+    "chai": "^4.2.0",
+    "chai-as-promised": "^7.1.1",
+    "coveralls": "^3.0.2",
+    "es-check": "^5.0.0",
+    "mocha": "^5.2.0",
+    "npm-run-all": "^4.1.5",
+    "nyc": "^13.1.0",
+    "source-map-support": "^0.5.9",
+    "tmp": "^0.0.33",
+    "ts-node": "^7.0.1",
+    "tslint": "^5.11.0",
+    "tslint-config-standard": "^8.0.1",
+    "typescript": "^3.2.2"
+  },
+  "scripts": {
+    "lint": "tslint src/**/*.ts -p tsconfig.json",
+    "lint:build": "es-check es5 dist/commonjs/*.js",
+    "build": "run-s build:* lint:build",
+    "build:commonjs": "tsc --p tsconfig.commonjs.json",
+    "build:es6": "tsc --p tsconfig.es6.json",
+    "test": "run-s lint test:coverage",
+    "test:coverage": "nyc mocha",
+    "prepublishOnly": "run-s test build"
+  },
+  "keywords": [
+    "audio",
+    "duration",
+    "ffmpeg",
+    "ffprobe",
+    "typescript"
+  ],
+  "files": [
+    "dist/**/*"
+  ]
 }

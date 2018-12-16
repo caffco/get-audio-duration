@@ -1,0 +1,27 @@
+# 1.0.2
+
+New:
+
+- Add `getVideoDurationInSeconds` named export to easy inter-op with CommonJS modules
+
+# 1.0.1
+
+Changed:
+
+- Don't export raw source code
+- Package ES6-compatible module
+
+# 1.0.0
+
+New:
+
+- Rewritten in TypeScript
+- No need to install ffprobe globally in the system
+
+Changed:
+
+- Upgraded dependencies to their latest version
+
+# 0.0.1
+
+:tada: First release
