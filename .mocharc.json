@@ -1,0 +1,6 @@
+{
+  "full-trace": true,
+  "recursive": true,
+  "timeout": "30s",
+  "require": "source-map-support/register"
+}

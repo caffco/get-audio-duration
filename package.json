@@ -13,6 +13,7 @@
     "is-stream": "^2.0.0"
   },
   "devDependencies": {
+    "@istanbuljs/nyc-config-typescript": "^1.0.1",
     "@types/chai": "^4.2.11",
     "@types/chai-as-promised": "^7.1.2",
     "@types/ffprobe-static": "^2.0.0",

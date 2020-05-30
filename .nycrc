@@ -1,13 +1,10 @@
 {
-  "require": [
-    "ts-node/register"
-  ],
+  "extends": "@istanbuljs/nyc-config-typescript",
+  "check-coverage": true,
   "extension": [
-    ".ts",
-    ".tsx"
+    ".ts"
   ],
   "exclude": [
-    "**/*.d.ts",
     "coverage",
     "dist",
     "test"
