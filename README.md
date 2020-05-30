@@ -1,4 +1,3 @@
-
 # get-audio-duration
 
 [![NPM version][npm-image]][npm-url]
@@ -20,24 +19,22 @@ $ npm install --save get-audio-duration
 # Usage
 
 ```js
-const { getAudioDurationInSeconds } = require('get-audio-duration')
+const { getAudioDurationInSeconds } = require('get-audio-duration');
 
 // From a local path...
 getAudioDurationInSeconds('audio.flac').then((duration) => {
-  console.log(duration)
-})
+  console.log(duration);
+});
 
 // From a readable stream...
 
-const fs = require('fs')
-const stream = fs.createReadStream('audio.flac')
+const fs = require('fs');
+const stream = fs.createReadStream('audio.flac');
 
 getAudioDurationInSeconds(stream).then((duration) => {
-  console.log(duration)
-})
+  console.log(duration);
+});
 ```
-
-# License
 
 [npm-image]: https://img.shields.io/npm/v/get-audio-duration.svg
 [npm-url]: https://npmjs.org/package/get-audio-duration
