@@ -1,3 +1,9 @@
+# 2.0.1
+
+Changed:
+
+- Upgrade Lodash from 4.17.11 to 4.17.13 to address security issues.
+
 # 2.0.0
 
 Breaking:
