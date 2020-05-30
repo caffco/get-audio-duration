@@ -1,3 +1,13 @@
+# 2.0.0
+
+Breaking:
+
+- Minimum Node version supported up to 10 from 8.
+
+Changed:
+
+- Version bump of dependencies.
+
 # 1.0.2
 
 New:
