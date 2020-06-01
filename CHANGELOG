@@ -1,3 +1,9 @@
+# 2.0.2
+
+Changed:
+
+- Replaced ffprobe-static by @ffprobe-installer/ffprobe.
+
 # 2.0.1
 
 Changed:
