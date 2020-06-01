@@ -8,15 +8,14 @@
   "main": "dist/commonjs/index.js",
   "module": "dist/es6/index.js",
   "dependencies": {
+    "@ffprobe-installer/ffprobe": "^1.0.12",
     "execa": "^4.0.2",
-    "ffprobe-static": "^3.0.0",
     "is-stream": "^2.0.0"
   },
   "devDependencies": {
     "@istanbuljs/nyc-config-typescript": "^1.0.1",
     "@types/chai": "^4.2.11",
     "@types/chai-as-promised": "^7.1.2",
-    "@types/ffprobe-static": "^2.0.0",
     "@types/mocha": "^7.0.2",
     "@types/node": "^14.0.6",
     "@types/tmp": "^0.2.0",

@@ -1,4 +1,5 @@
-import * as ffprobe from 'ffprobe-static';
+import * as ffprobe from '@ffprobe-installer/ffprobe';
+
 import * as execa from 'execa';
 import * as isStream from 'is-stream';
 import { Readable as ReadableStream } from 'stream';
