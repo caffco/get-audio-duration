@@ -1,7 +1,7 @@
 {
   "name": "get-audio-duration",
   "description": "Get the duration of an audio file",
-  "version": "2.0.3-beta.0",
+  "version": "2.0.3",
   "author": "Lluís Ulzurrun de Asanza Sàez <me@llu.is> (http://llu.is)",
   "license": "MIT",
   "repository": "caffco/get-audio-duration",
