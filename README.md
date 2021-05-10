@@ -1,8 +1,8 @@
 # get-audio-duration
 
 [![NPM version][npm-image]][npm-url]
-[![Build status][travis-image]][travis-url]
-[![Test coverage][codecov-image]][codecov-url]
+[![Build status](https://github.com/caffco/get-audio-duration/actions/workflows/test.yml/badge.svg)](https://github.com/caffco/get-audio-duration/actions/workflows/test.yml)[![Maintainability](https://api.codeclimate.com/v1/badges/5033f5c3edd89b931e4a/maintainability)](https://codeclimate.com/github/caffco/get-audio-duration/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/5033f5c3edd89b931e4a/test_coverage)](https://codeclimate.com/github/caffco/get-audio-duration/test_coverage)
 [![Dependency Status][david-image]][david-url]
 [![License][license-image]][license-url]
 [![NPM bundle size (minified)][bundle-size-image]][npm-url]
@@ -39,10 +39,6 @@ getAudioDurationInSeconds(stream).then((duration) => {
 [npm-image]: https://img.shields.io/npm/v/get-audio-duration.svg
 [npm-url]: https://npmjs.org/package/get-audio-duration
 [bundle-size-image]: https://img.shields.io/bundlephobia/min/get-audio-duration.svg
-[travis-image]: https://img.shields.io/travis/caffco/get-audio-duration.svg
-[travis-url]: https://travis-ci.org/caffco/get-audio-duration
-[codecov-image]: https://codecov.io/gh/caffco/get-audio-duration/branch/master/graph/badge.svg
-[codecov-url]: https://codecov.io/gh/caffco/get-audio-duration
 [david-image]: http://img.shields.io/david/caffco/get-audio-duration.svg
 [david-url]: https://david-dm.org/caffco/get-audio-duration
 [license-image]: http://img.shields.io/npm/l/get-audio-duration.svg
