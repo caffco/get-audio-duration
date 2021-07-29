@@ -1,3 +1,13 @@
+# 2.1.0
+
+New:
+
+- Added Apple silicon support.
+
+Changed:
+
+- Dependencies upgraded to their latest semver-compatible versions.
+
 # 2.0.3
 
 Changed:
