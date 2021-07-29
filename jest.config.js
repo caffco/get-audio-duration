@@ -5,10 +5,8 @@ module.exports = {
   collectCoverage: true,
   globals: {
     'ts-jest': {
-      tsConfig: {
-        compilerOptions: {
-          types: ['jest'],
-        },
+      tsconfig: {
+        types: ['jest'],
       },
     },
   },
