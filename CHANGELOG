@@ -4,8 +4,6 @@
 
 - Dropped Node.js 13 support.
 
-# 2.1.0
-
 New:
 
 - Added Apple silicon support.
