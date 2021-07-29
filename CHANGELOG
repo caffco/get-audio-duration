@@ -1,3 +1,9 @@
+# 3.0.0
+
+**BREAKING CHANGES:**
+
+- Dropped Node.js 13 support.
+
 # 2.1.0
 
 New:
