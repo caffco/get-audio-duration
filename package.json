@@ -1,16 +1,16 @@
 {
   "name": "get-audio-duration",
   "description": "Get the duration of an audio file",
-  "version": "2.0.3",
+  "version": "2.1.0-beta.0",
   "author": "Lluís Ulzurrun de Asanza Sàez <me@llu.is> (http://llu.is)",
   "license": "MIT",
   "repository": "caffco/get-audio-duration",
   "main": "dist/commonjs/index.js",
   "module": "dist/es6/index.js",
   "dependencies": {
-    "node-ffprobe-installer": "^1.2.3",
     "execa": "^5.0.0",
-    "is-stream": "^2.0.0"
+    "is-stream": "^2.0.0",
+    "node-ffprobe-installer": "^1.2.3"
   },
   "devDependencies": {
     "@istanbuljs/nyc-config-typescript": "^1.0.1",
