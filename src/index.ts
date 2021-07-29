@@ -1,4 +1,4 @@
-import * as ffprobe from '@ffprobe-installer/ffprobe';
+import * as ffprobe from 'node-ffprobe-installer';
 
 import * as execa from 'execa';
 import * as isStream from 'is-stream';
