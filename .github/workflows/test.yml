@@ -26,8 +26,16 @@ jobs:
           fetch-depth: 0
       - name: Install dependencies
         run: yarn --frozen-lockfile
-      - name: Run tests
+      - name: Run unit tests
         run: yarn test
+      - name: Run integration tests
+        run: |
+          TEMP_DIR=$(mktemp -d)
+          cp test/2L-125_stereo-44k-16b_04.flac "$TEMP_DIR/audio.flac"
+          cp test/integration/* "$TEMP_DIR"
+          cd "$TEMP_DIR"
+          npm install --save get-audio-duration
+          (node index.js | grep -q '97.76') || (echo "Output:"; node index.js; echo "Expected: 97.76"; exit 1)
       - name: Upload coverage
         uses: caffco/code-climate-github-action@v0.0.1-alpha.5
         env:
