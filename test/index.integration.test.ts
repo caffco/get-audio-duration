@@ -8,6 +8,7 @@ import getDuration, { getAudioDurationInSeconds } from '../src'
 const expectedOGGAudioDuration = 33
 const expectedFLACAudioDuration = 97
 const expectedWAVAudioDuration = 33
+const expectedWEBMAudioDuration = 31
 const expectedAudioDurationThreshold = -1
 
 const sampleOGGFilePath = resolvePath(__dirname, './Rayman_2_music_sample.ogg')
@@ -20,6 +21,10 @@ const sampleFLACFilePath = resolvePath(
   './2L-125_stereo-44k-16b_04.flac'
 )
 const sampleWAVFilePath = resolvePath(__dirname, './file_example_WAV_1MG.wav')
+const sampleWEBMFilePath = resolvePath(
+  __dirname,
+  './file_example_WEBM_480_900KB.webm'
+)
 
 describe('get-audio-duration', () => {
   it('Should export function under named export, too', () => {
@@ -49,6 +54,15 @@ describe('get-audio-duration', () => {
       const duration = await getDuration(input)
       expect(duration).toBeCloseTo(
         expectedWAVAudioDuration,
+        expectedAudioDurationThreshold
+      )
+    })
+
+    it('Should return proper duration for webm files', async function () {
+      const inputFileReadStream = fs.createReadStream(sampleWEBMFilePath)
+      const duration = await getDuration(inputFileReadStream)
+      expect(duration).toBeCloseTo(
+        expectedWEBMAudioDuration,
         expectedAudioDurationThreshold
       )
     })
