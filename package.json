@@ -10,7 +10,7 @@
   "dependencies": {
     "execa": "^5.0.0",
     "is-stream": "^2.0.0",
-    "node-ffprobe-installer": "^1.2.3"
+    "@ffprobe-installer/ffprobe": "^1.4.1"
   },
   "devDependencies": {
     "@types/jest": "^27.0.0",
