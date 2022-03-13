@@ -1,3 +1,13 @@
+# 3.0.1
+
+Changed:
+
+- Use `@ffprobe-installer/ffprobe` instead of `node-ffprobe-installer`.
+
+Fixed:
+
+- Fix Apple Silicon support.
+
 # 3.0.0
 
 **BREAKING CHANGES:**
