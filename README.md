@@ -34,6 +34,12 @@ const stream = fs.createReadStream('audio.flac')
 getAudioDurationInSeconds(stream).then((duration) => {
   console.log(duration)
 })
+
+// If you need to customize the path to ffprobe...
+
+getAudioDurationInSeconds('audio.flac', '/path/to/ffprobe').then((duration) => {
+  console.log(duration)
+})
 ```
 
 [npm-image]: https://img.shields.io/npm/v/get-audio-duration.svg
