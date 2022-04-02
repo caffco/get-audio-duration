@@ -1,3 +1,9 @@
+# 3.1.0
+
+Changed:
+
+- Allow overriding `ffprobe` path by passing a second, optional, parameter.
+
 # 3.0.1
 
 Changed:
