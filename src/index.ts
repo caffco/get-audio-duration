@@ -39,7 +39,7 @@ const getFFprobeWrappedExecution = (
  *
  * @param input Stream or path to file to be used as
  * input for `ffprobe`.
- * @input [ffprobePath] Optional. Path to `ffprobe` binary. Do not provide any
+ * @param [ffprobePath] Optional. Path to `ffprobe` binary. Do not provide any
  * value for this parameter unless you need to override the path to `ffprobe`.
  * Defaults to the path provided by `@ffprobe-installer/ffprobe`, which works in
  * most environments.
