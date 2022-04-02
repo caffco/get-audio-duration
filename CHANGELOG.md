@@ -1,3 +1,9 @@
+# 3.1.1
+
+Fixed:
+
+- Fixed documentation for `ffprobePath` param.
+
 # 3.1.0
 
 Changed:
