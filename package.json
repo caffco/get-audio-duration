@@ -12,7 +12,7 @@
     "execa": "^5.0.0"
   },
   "devDependencies": {
-    "@types/node": "^15.0.2",
+    "@types/node": "^20.2.5",
     "@types/tmp": "^0.2.3",
     "@typescript-eslint/eslint-plugin": "^5.17.0",
     "@typescript-eslint/parser": "^5.17.0",
@@ -36,7 +36,7 @@
     "build:es6": "tsc --p tsconfig.es6.json",
     "test": "vitest --coverage",
     "format": "prettier --config .prettierrc 'src/**/*.ts' 'test/**/*.ts' --write",
-    "prepublishOnly": "run-s test build"
+    "prepublishOnly": "CI=1 run-s test build"
   },
   "husky": {
     "hooks": {
