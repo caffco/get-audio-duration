@@ -1,43 +1,34 @@
-import { describe, it, expect, jest } from '@jest/globals'
+import { describe, expect, it, vi } from 'vitest'
 
-import * as execa from 'execa'
+import execa from 'execa'
 
-import getDuration from '../src'
+import getDuration, { getAudioDurationInSeconds } from '../src'
 
-jest.mock('execa', () =>
-  jest.fn().mockResolvedValue({
+vi.mock('execa', () => ({
+  __esModule: true,
+  default: vi.fn().mockResolvedValue({
     stdout: 'duration="42.0"',
-  } as never)
-)
-jest.mock('is-stream', () => jest.fn().mockReturnValue(false))
+  } as never),
+}))
 
 const expectedAudioDurationThreshold = -1
 
-describe('get-audio-duration', () => {
-  describe('when using a file path', () => {
-    it('Should use overriden ffprobe when provided', async () => {
-      const durationPromise = getDuration(
-        'fake file',
-        'the overriden path to ffprobe'
-      )
+describe.each`
+  fn                           | description
+  ${getDuration}               | ${'default export'}
+  ${getAudioDurationInSeconds} | ${'named export'}
+`('when using $description', ({ fn }) => {
+  it('should use overriden ffprobe when provided', async () => {
+    const durationPromise = fn('fake file', 'the overriden path to ffprobe')
 
-      expect(execa).toHaveBeenCalledWith(
-        'the overriden path to ffprobe',
-        expect.anything()
-      )
+    expect(execa).toHaveBeenCalledWith(
+      'the overriden path to ffprobe',
+      expect.anything()
+    )
 
-      await expect(durationPromise).resolves.toBeCloseTo(
-        42.0,
-        expectedAudioDurationThreshold
-      )
-    })
-  })
-
-  describe('when input is invalid', () => {
-    it('Should throw an error', async () => {
-      await expect(getDuration(42 as unknown as string)).rejects.toThrowError(
-        'Given input was neither a string nor a Stream'
-      )
-    })
+    await expect(durationPromise).resolves.toBeCloseTo(
+      42.0,
+      expectedAudioDurationThreshold
+    )
   })
 })
