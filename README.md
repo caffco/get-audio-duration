@@ -8,7 +8,7 @@
 [![NPM bundle size (minified)][bundle-size-image]][npm-url]
 [![Downloads][downloads-image]][downloads-url]
 
-Get the duration of audio files/streams with `ffprobe`.
+Get the duration of audio files with `ffprobe`.
 
 # Supported platforms
 
@@ -25,17 +25,7 @@ $ npm install --save get-audio-duration
 ```js
 const { getAudioDurationInSeconds } = require('get-audio-duration')
 
-// From a local path...
 getAudioDurationInSeconds('audio.flac').then((duration) => {
-  console.log(duration)
-})
-
-// From a readable stream...
-
-const fs = require('fs')
-const stream = fs.createReadStream('audio.flac')
-
-getAudioDurationInSeconds(stream).then((duration) => {
   console.log(duration)
 })
 
