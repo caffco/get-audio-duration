@@ -1,3 +1,10 @@
+# 4.0.0
+
+**BREAKING CHANGES:**
+
+- Drop stream support. Download the file locally and pass the absolute path to
+  `getAudioDurationInSeconds` instead.
+
 # 3.1.1
 
 Fixed:
