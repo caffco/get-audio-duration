@@ -26,7 +26,7 @@
     "tmp": "^0.2.1",
     "ts-node": "^10.7.0",
     "typescript": "^5.0.4",
-    "vitest": "^0.32.0"
+    "vitest": "^0.32.2"
   },
   "scripts": {
     "lint": "eslint **/*.ts",
