@@ -1,24 +1,18 @@
-import * as ffprobe from '@ffprobe-installer/ffprobe'
-
 import execa from 'execa'
 
 const getFFprobeWrappedExecution = (
   input: string,
-  ffprobePath?: string
-): execa.ExecaChildProcess => {
-  const params = [
+  ffprobePath: string
+): execa.ExecaChildProcess =>
+  execa(ffprobePath, [
     '-v',
     'error',
     '-select_streams',
     'a:0',
     '-show_format',
     '-show_streams',
-  ]
-
-  const overridenPath = ffprobePath || ffprobe.path
-
-  return execa(overridenPath, [...params, input])
-}
+    input,
+  ])
 
 /**
  * Returns a promise that will be resolved with the duration of given audio in
@@ -40,7 +34,7 @@ const getAudioDurationInSeconds = async (
 ): Promise<number> => {
   const { stdout } = await getFFprobeWrappedExecution(
     absolutePathToFile,
-    ffprobePath
+    ffprobePath ?? (await import('@ffprobe-installer/ffprobe')).path
   )
   const matched = stdout.match(/duration="?(\d*\.\d*)"?/)
   if (matched && matched[1]) return parseFloat(matched[1])
