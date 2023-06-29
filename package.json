@@ -38,7 +38,9 @@
     "build:es6": "tsc --p tsconfig.es6.json",
     "test": "vitest --coverage",
     "format": "prettier --config .prettierrc 'src/**/*.ts' 'test/**/*.ts' --write",
-    "prepublishOnly": "CI=1 run-s test build"
+    "prepublishOnly": "CI=1 run-s test build",
+    "update:changelog": "git-conventional-commits changelog --file 'CHANGELOG.md'",
+    "update:version": "TEMP_PACKAGE_JSON=$(mktemp) &&git-conventional-commits version 2>/dev/null | xargs -I{} jq --arg newVersion {} '.version = $newVersion' package.json > \"$TEMP_PACKAGE_JSON\" && rm package.json && mv \"$TEMP_PACKAGE_JSON\" package.json"
   },
   "keywords": [
     "audio",
