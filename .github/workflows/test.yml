@@ -10,7 +10,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        node-version: [14.x, 16.x, 18.x]
+        node-version: [14.x, 16.x, 18.x, 20.x]
         os: [ubuntu-latest]
     steps:
       - name: Install git
@@ -26,7 +26,9 @@ jobs:
           fetch-depth: 0
       - name: Install dependencies
         run: yarn --frozen-lockfile
-      - name: Run tests
+      - name: Lint
+        run: yarn lint:source
+      - name: Tests
         run: yarn test
       - name: Upload coverage
         uses: caffco/code-climate-github-action@v0.0.1-alpha.5
@@ -37,3 +39,5 @@ jobs:
           collect_coverage: 'true'
           coverage_file_patterns: |
             coverage/lcov.info:lcov
+      - name: Build
+        run: yarn build
