@@ -1,3 +1,11 @@
+## **4.0.1**&emsp;<sub><sup>2023-06-29 ([3489164...4c7ace1](https://github.com/caffco/get-audio-duration/compare/348916404ee7aa323448685d4c01d4b1d278ae31...4c7ace1e4f0f9ec83adf5cd84f9adea7d399cc17?diff=split))</sup></sub>
+
+### Bug Fixes
+
+- only import \`ffprobe\` when no path is provided ([ac6d39e](https://github.com/caffco/get-audio-duration/commit/ac6d39e3a50c25ae4ac68387a68edbab58f36312))
+
+<br>
+
 ## 4.0.0
 
 **BREAKING CHANGES:**
