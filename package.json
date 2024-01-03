@@ -19,7 +19,7 @@
     "@vitest/coverage-v8": "^1.1.1",
     "es-check": "^7.0.0",
     "eslint": "^8.56.0",
-    "git-conventional-commits": "^2.6.5",
+    "git-conventional-commits": "^2.6.7",
     "husky": "^8.0.3",
     "npm-run-all": "^4.1.5",
     "prettier": "^3.1.1",
