@@ -1295,10 +1295,10 @@ get-stream@^8.0.1:
   resolved "https://registry.yarnpkg.com/get-stream/-/get-stream-8.0.1.tgz#def9dfd71742cd7754a7761ed43749a27d02eca2"
   integrity sha512-VaUJspBffn/LMCJVoMvSAdmscJyS1auj5Zulnn5UoYcY531UWmdwhRWkcGKnGU93m5HSXP9LP2usOryrBtQowA==
 
-git-conventional-commits@^2.6.5:
-  version "2.6.5"
-  resolved "https://registry.yarnpkg.com/git-conventional-commits/-/git-conventional-commits-2.6.5.tgz#8665bf548a666998d0228527b5e213cd967995bc"
-  integrity sha512-HbtKUnZ3CciI8CVUcnGOXb/bKN0cuXZLjHie/JxlIaCkHr0l38kUtfewoRACp+SJirOzjBtejAwoaQ4hStHfLg==
+git-conventional-commits@^2.6.7:
+  version "2.6.7"
+  resolved "https://registry.yarnpkg.com/git-conventional-commits/-/git-conventional-commits-2.6.7.tgz#ce855518e4aac50dc155abfc31606f32d58917bb"
+  integrity sha512-n6QJJpP6s10GJUTXZp0Mce/W8aL8RK1J2/EDNjZYQRSe7vA2h20Ria2sd1LUISS2oPzKr0218/iVdrnGakUVtQ==
   dependencies:
     yaml "^2.1.3"
     yargs "^17.6.2"
