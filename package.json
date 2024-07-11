@@ -16,7 +16,7 @@
     "@types/tmp": "^0.2.6",
     "@typescript-eslint/eslint-plugin": "^5.62.0",
     "@typescript-eslint/parser": "^5.62.0",
-    "@vitest/coverage-v8": "^2.0.1",
+    "@vitest/coverage-v8": "^2.0.2",
     "es-check": "^7.2.1",
     "eslint": "^8.57.0",
     "git-conventional-commits": "^2.6.7",
@@ -27,7 +27,7 @@
     "tmp": "^0.2.3",
     "ts-node": "^10.7.0",
     "typescript": "^5.5.3",
-    "vitest": "^2.0.1"
+    "vitest": "^2.0.2"
   },
   "scripts": {
     "lint:commit": "git-conventional-commits commit-msg-hook",
