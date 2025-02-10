@@ -27,7 +27,7 @@
     "tmp": "^0.2.3",
     "ts-node": "^10.7.0",
     "typescript": "^5.5.4",
-    "vitest": "^2.0.5"
+    "vitest": "^2.1.9"
   },
   "scripts": {
     "lint:commit": "git-conventional-commits commit-msg-hook",
