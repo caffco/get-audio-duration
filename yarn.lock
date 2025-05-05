@@ -1020,10 +1020,10 @@ es-abstract@^1.17.0-next.1, es-abstract@^1.17.5:
     string.prototype.trimend "^1.0.1"
     string.prototype.trimstart "^1.0.1"
 
-es-check@^9.1.1:
-  version "9.1.1"
-  resolved "https://registry.yarnpkg.com/es-check/-/es-check-9.1.1.tgz#cd81e3cfe63cc48df4bcb8acf98d2000528eefc5"
-  integrity sha512-ijcOixvVzZAr8xuTAEGsPGsSxq8r9TA0i39wQmEFBiVsvcdOz4VEWEYrdEiSoPw8YeQmlfkkOyvhRQam2RKCEw==
+es-check@^9.1.2:
+  version "9.1.2"
+  resolved "https://registry.yarnpkg.com/es-check/-/es-check-9.1.2.tgz#d588a80fce194172fd69ff7da1e0b13e2044eb85"
+  integrity sha512-aoVC4ROjhULurs3/CO9bAwJH0GDWNcnXNVPJulRWlo7ATHTxXtwee3loVfP6X8CvCqDsQs+CPMwOFrr5JwTFPQ==
   dependencies:
     acorn "8.14.1"
     acorn-walk "^8.3.4"
