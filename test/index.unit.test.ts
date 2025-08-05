@@ -1,10 +1,10 @@
-import execa from 'execa'
+import { execa } from 'execa'
 import { describe, expect, it, vi } from 'vitest'
 import getDuration, { getAudioDurationInSeconds } from '../src'
 
 vi.mock('execa', () => ({
   __esModule: true,
-  default: vi.fn().mockResolvedValue({
+  execa: vi.fn().mockResolvedValue({
     stdout: 'duration="42.0"',
   } as never),
 }))
