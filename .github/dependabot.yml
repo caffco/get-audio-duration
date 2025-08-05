@@ -3,12 +3,19 @@ updates:
   - package-ecosystem: 'npm'
     directory: '/'
     schedule:
-      interval: 'daily'
+      interval: 'weekly'
+      day: 'monday'
+      time: '05:00'
+      timezone: 'Europe/Madrid'
+    assignees:
+      - 'sumolari'
+    reviewers:
+      - 'sumolari'
+    open-pull-requests-limit: 0
     commit-message:
       prefix: 'chore'
+      prefix-development: 'chore'
       include: 'scope'
-    reviewers:
-      - 'Sumolari'
-    assignees:
-      - 'Sumolari'
-    versioning-strategy: increase
+    labels:
+      - 'dependencies'
+    rebase-strategy: 'auto'
