@@ -1,9 +1,6 @@
-import execa from 'execa'
+import { execa } from 'execa'
 
-const getFFprobeWrappedExecution = (
-  input: string,
-  ffprobePath: string,
-): execa.ExecaChildProcess =>
+const getFFprobeWrappedExecution = (input: string, ffprobePath: string) =>
   execa(ffprobePath, [
     '-v',
     'error',
