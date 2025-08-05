@@ -1,7 +1,5 @@
-import { describe, expect, it, vi } from 'vitest'
-
 import execa from 'execa'
-
+import { describe, expect, it, vi } from 'vitest'
 import getDuration, { getAudioDurationInSeconds } from '../src'
 
 vi.mock('execa', () => ({
@@ -23,12 +21,12 @@ describe.each`
 
     expect(execa).toHaveBeenCalledWith(
       'the overriden path to ffprobe',
-      expect.anything()
+      expect.anything(),
     )
 
     await expect(durationPromise).resolves.toBeCloseTo(
       42.0,
-      expectedAudioDurationThreshold
+      expectedAudioDurationThreshold,
     )
   })
 })

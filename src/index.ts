@@ -2,7 +2,7 @@ import execa from 'execa'
 
 const getFFprobeWrappedExecution = (
   input: string,
-  ffprobePath: string
+  ffprobePath: string,
 ): execa.ExecaChildProcess =>
   execa(ffprobePath, [
     '-v',
@@ -30,14 +30,14 @@ const getFFprobeWrappedExecution = (
  */
 const getAudioDurationInSeconds = async (
   absolutePathToFile: string,
-  ffprobePath?: string
+  ffprobePath?: string,
 ): Promise<number> => {
   const { stdout } = await getFFprobeWrappedExecution(
     absolutePathToFile,
-    ffprobePath ?? (await import('@ffprobe-installer/ffprobe')).path
+    ffprobePath ?? (await import('@ffprobe-installer/ffprobe')).path,
   )
   const matched = stdout.match(/duration="?(\d*\.\d*)"?/)
-  if (matched && matched[1]) return parseFloat(matched[1])
+  if (matched?.[1]) return parseFloat(matched[1])
   throw new Error('No duration found!')
 }
 

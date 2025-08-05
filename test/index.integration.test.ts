@@ -1,6 +1,5 @@
+import { resolve as resolvePath } from 'node:path'
 import { describe, expect, it } from 'vitest'
-
-import { resolve as resolvePath } from 'path'
 
 import getDuration, { getAudioDurationInSeconds } from '../src'
 
@@ -13,16 +12,16 @@ const expectedAudioDurationThreshold = -1
 const sampleOGGFilePath = resolvePath(__dirname, './Rayman_2_music_sample.ogg')
 const sampleOGGWithSpacesFilePath = resolvePath(
   __dirname,
-  './Rayman 2 music sample.ogg'
+  './Rayman 2 music sample.ogg',
 )
 const sampleFLACFilePath = resolvePath(
   __dirname,
-  './2L-125_stereo-44k-16b_04.flac'
+  './2L-125_stereo-44k-16b_04.flac',
 )
 const sampleWAVFilePath = resolvePath(__dirname, './file_example_WAV_1MG.wav')
 const sampleWEBMFilePath = resolvePath(
   __dirname,
-  './file_example_WEBM_480_900KB.webm'
+  './file_example_WEBM_480_900KB.webm',
 )
 
 describe.each`
@@ -42,9 +41,9 @@ describe.each`
     async ({ input, expectedDuration }) => {
       await expect(fn(input)).resolves.toBeCloseTo(
         expectedDuration,
-        expectedAudioDurationThreshold
+        expectedAudioDurationThreshold,
       )
-    }
+    },
   )
 
   it('should throw an error if not an audio stream', async () => {

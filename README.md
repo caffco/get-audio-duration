@@ -2,8 +2,7 @@
 
 [![NPM version][npm-image]][npm-url]
 ![Build Status](https://github.com/caffco/get-audio-duration/workflows/test/badge.svg)
-[![Maintainability](https://api.codeclimate.com/v1/badges/5033f5c3edd89b931e4a/maintainability)](https://codeclimate.com/github/caffco/get-audio-duration/maintainability)
-[![Test Coverage](https://api.codeclimate.com/v1/badges/5033f5c3edd89b931e4a/test_coverage)](https://codeclimate.com/github/caffco/get-audio-duration/test_coverage)
+[![codecov](https://codecov.io/gh/caffco/get-audio-duration/graph/badge.svg?token=oOoNz6ghSM)](https://codecov.io/gh/caffco/get-audio-duration)
 [![License][license-image]][license-url]
 [![NPM bundle size (minified)][bundle-size-image]][npm-url]
 [![Downloads][downloads-image]][downloads-url]
