@@ -12,17 +12,14 @@
     "execa": "^5.0.0"
   },
   "devDependencies": {
+    "@biomejs/biome": "^2.1.3",
     "@types/node": "^20.2.5",
     "@types/tmp": "^0.2.6",
-    "@typescript-eslint/eslint-plugin": "^8.37.0",
-    "@typescript-eslint/parser": "^8.37.0",
     "@vitest/coverage-v8": "^2.1.9",
     "es-check": "^9.1.2",
-    "eslint": "^8.57.1",
     "git-conventional-commits": "^2.8.0",
-    "husky": "^8.0.3",
+    "husky": "^9.1.7",
     "npm-run-all": "^4.1.5",
-    "prettier": "^3.6.2",
     "source-map-support": "^0.5.21",
     "tmp": "^0.2.3",
     "ts-node": "^10.7.0",
@@ -31,16 +28,17 @@
   },
   "scripts": {
     "lint:commit": "git-conventional-commits commit-msg-hook",
-    "lint:source": "eslint **/*.ts",
+    "lint:source": "biome lint .",
     "lint:build": "es-check es5 dist/commonjs/*.js",
     "build": "run-s build:* lint:build",
     "build:commonjs": "tsc --p tsconfig.commonjs.json",
     "build:es6": "tsc --p tsconfig.es6.json",
     "test": "vitest --coverage",
-    "format": "prettier --config .prettierrc 'src/**/*.ts' 'test/**/*.ts' --write",
+    "format": "biome format --write .",
     "prepublishOnly": "CI=1 run-s test build",
     "update:changelog": "git-conventional-commits changelog --file 'CHANGELOG.md'",
-    "update:version": "TEMP_PACKAGE_JSON=$(mktemp) &&git-conventional-commits version 2>/dev/null | xargs -I{} jq --arg newVersion {} '.version = $newVersion' package.json > \"$TEMP_PACKAGE_JSON\" && rm package.json && mv \"$TEMP_PACKAGE_JSON\" package.json"
+    "update:version": "TEMP_PACKAGE_JSON=$(mktemp) &&git-conventional-commits version 2>/dev/null | xargs -I{} jq --arg newVersion {} '.version = $newVersion' package.json > \"$TEMP_PACKAGE_JSON\" && rm package.json && mv \"$TEMP_PACKAGE_JSON\" package.json",
+    "prepare": "husky"
   },
   "keywords": [
     "audio",
