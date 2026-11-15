@@ -1,41 +1,23 @@
-import { execa } from 'execa'
-
-const getFFprobeWrappedExecution = (input: string, ffprobePath: string) =>
-  execa(ffprobePath, [
-    '-v',
-    'error',
-    '-select_streams',
-    'a:0',
-    '-show_format',
-    '-show_streams',
-    input,
-  ])
-
-/**
- * Returns a promise that will be resolved with the duration of given audio in
- * seconds.
- *
- * @param absolutePathToFile Absolute path to file to be used as input for
- * `ffprobe`.
- * @param [ffprobePath] Optional. Path to `ffprobe` binary. Do not provide any
- * value for this parameter unless you need to override the path to `ffprobe`.
- * Defaults to the path provided by `@ffprobe-installer/ffprobe`, which works in
- * most environments.
- *
- * @return Promise that will be resolved with given audio duration in
- * seconds.
- */
 const getAudioDurationInSeconds = async (
   absolutePathToFile: string,
-  ffprobePath?: string,
+  _ffprobePath?: string,
 ): Promise<number> => {
-  const { stdout } = await getFFprobeWrappedExecution(
-    absolutePathToFile,
-    ffprobePath ?? (await import('@ffprobe-installer/ffprobe')).path,
+  const { parseFile, TrackType } = await import('music-metadata')
+
+  const metadata = await parseFile(absolutePathToFile, { duration: true })
+
+  // Match ffprobe's -select_streams a:0: prefer the first audio track's
+  // duration, fall back to format.duration (e.g. video-only input).
+  const audioTrack = metadata.format.trackInfo.find(
+    (track): track is { duration?: number } => track.type === TrackType.audio,
   )
-  const matched = stdout.match(/duration="?(\d*\.\d*)"?/)
-  if (matched?.[1]) return parseFloat(matched[1])
-  throw new Error('No duration found!')
+  const duration = audioTrack?.duration ?? metadata.format.duration
+
+  if (duration === undefined) {
+    throw new Error('No duration found!')
+  }
+
+  return duration
 }
 
 export default getAudioDurationInSeconds

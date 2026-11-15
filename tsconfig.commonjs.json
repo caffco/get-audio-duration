@@ -4,7 +4,8 @@
     "target": "es5",
     "module": "commonjs",
     "outDir": "dist/commonjs",
-    "lib": ["es2015"]
+    "lib": ["es2015", "es2022"],
+    "skipLibCheck": true
   },
   "include": ["src/**/*"]
 }
