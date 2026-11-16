@@ -30,6 +30,10 @@ jobs:
         run: yarn lint:source
       - name: Tests
         run: yarn test
+      - name: Install Playwright Chromium
+        run: npx playwright install --with-deps chromium
+      - name: Browser tests
+        run: yarn test:browser
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v4
         with:
