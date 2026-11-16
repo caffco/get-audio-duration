@@ -11,9 +11,10 @@ Get the duration of audio files with [music-metadata](https://github.com/Borewit
 
 # Supported platforms
 
-Requires [Node.js ≥ 22](https://nodejs.org/en/about/previous-releases).
-This package works in Node.js and in browser environments when bundled
-with a module bundler such as Webpack or Rollup.
+- **Node.js:** Requires [Node.js ≥ 22](https://nodejs.org/en/about/previous-releases).
+  Give a file path, a `Blob` or a `File`.
+- **Browser:** Give a `Blob` or a `File`. A file path does not work in the
+  browser. The tests use Vite and Chromium.
 
 # Install
 
@@ -30,10 +31,10 @@ getAudioDurationInSeconds('audio.flac').then((duration) => {
   console.log(duration)
 })
 
-// The second `ffprobePath` argument is accepted for backwards compatibility
-// but is ignored: music-metadata does not require an external ffprobe binary.
+// In the browser, give a Blob or a File, for example from a file input.
 
-getAudioDurationInSeconds('audio.flac', '/path/to/ffprobe').then((duration) => {
+const [file] = document.querySelector('input[type="file"]').files
+getAudioDurationInSeconds(file).then((duration) => {
   console.log(duration)
 })
 ```
