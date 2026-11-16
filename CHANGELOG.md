@@ -1,3 +1,19 @@
+## **5.0.0**&emsp;<sub><sup>2026-11-16 ([4e841b7...64d03bd](https://github.com/caffco/get-audio-duration/compare/4e841b745bb2598890f0ea9529ffc66213dd06d7...64d03bdcf1f72917e060cbc1eb6ecdfc60f5ce72?diff=split))</sup></sub>
+
+### Features
+
+- add browser support \(\#626\) ([dadfcb3](https://github.com/caffco/get-audio-duration/commit/dadfcb33e85c7ab0fe8c7cdddfc2b70a9a487397))
+
+### Bug Fixes
+
+- replace @ffprobe\-installer/ffprobe with music\-metadata \(\#625\) ([b41d7f0](https://github.com/caffco/get-audio-duration/commit/b41d7f01f3971773e91eaa7b9341348ee21b8a9b))
+
+
+### BREAKING CHANGES
+-  drop support for Node 14 and 16 from tests and add Node 21 ([bc53758](https://github.com/caffco/get-audio-duration/commit/bc53758157ec12a4eb902065379202b4eb8807ee))
+-  the first argument accepts a path, a Blob or a File\. The second argument \(ffprobe path\) is removed\. Requires Node\.js \>= 22\. ([dadfcb3](https://github.com/caffco/get-audio-duration/commit/dadfcb33e85c7ab0fe8c7cdddfc2b70a9a487397))
+<br>
+
 ## **4.0.1**&emsp;<sub><sup>2023-06-29 ([3489164...4c7ace1](https://github.com/caffco/get-audio-duration/compare/348916404ee7aa323448685d4c01d4b1d278ae31...4c7ace1e4f0f9ec83adf5cd84f9adea7d399cc17?diff=split))</sup></sub>
 
 ### Bug Fixes
