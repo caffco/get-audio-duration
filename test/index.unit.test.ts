@@ -1,4 +1,5 @@
 import { describe, expect, it, vi } from 'vitest'
+import getDuration, { getAudioDurationInSeconds } from '../src'
 
 vi.mock('music-metadata', () => ({
   parseFile: vi.fn().mockResolvedValue({
@@ -9,8 +10,6 @@ vi.mock('music-metadata', () => ({
   }),
   TrackType: { audio: 0x02 },
 }))
-
-import getDuration, { getAudioDurationInSeconds } from '../src'
 
 const expectedAudioDurationThreshold = -1
 
@@ -32,5 +31,15 @@ describe.each`
     const mod =
       await vi.importMock<typeof import('music-metadata')>('music-metadata')
     expect(mod.parseFile).toHaveBeenCalledWith('fake file', { duration: true })
+  })
+
+  it('should reject when music-metadata finds no duration', async () => {
+    const mod =
+      await vi.importMock<typeof import('music-metadata')>('music-metadata')
+    vi.mocked(mod.parseFile).mockResolvedValueOnce({
+      format: { trackInfo: [] },
+    } as never)
+
+    await expect(fn('fake file')).rejects.toThrow('No duration found!')
   })
 })
