@@ -35,6 +35,8 @@ jobs:
         run: pnpm test
       - name: Install Playwright Chromium
         run: pnpm exec playwright install --with-deps chromium
+      - name: Package entry points and TypeScript declarations
+        run: pnpm test:package
       - name: Browser tests
         run: pnpm test:browser
       - name: Upload coverage to Codecov
@@ -42,8 +44,6 @@ jobs:
         with:
           files: ./coverage/lcov.info
           token: ${{ secrets.CODECOV_TOKEN }}
-      - name: Build
-        run: pnpm build
 
   actions-lockfile:
     runs-on: ubuntu-latest

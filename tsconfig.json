@@ -1,15 +1,17 @@
 {
   "compilerOptions": {
     "esModuleInterop": true,
-    "target": "es6",
-    "module": "commonjs",
+    "target": "ES2022",
+    "module": "NodeNext",
     "noImplicitAny": true,
     "preserveConstEnums": true,
     "declaration": true,
     "strictNullChecks": true,
     "strict": true,
     "sourceMap": true,
-    "types": ["node"]
+    "types": ["node"],
+    "moduleResolution": "NodeNext",
+    "skipLibCheck": true
   },
   "include": ["src/**/*", "test/**/*"],
   "exclude": ["node_modules"]
