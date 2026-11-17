@@ -1,3 +1,4 @@
+import { readFile } from 'node:fs/promises'
 import { resolve as resolvePath } from 'node:path'
 import { describe, expect, it } from 'vitest'
 
@@ -24,22 +25,64 @@ const sampleWEBMFilePath = resolvePath(
   './file_example_WEBM_480_900KB.webm',
 )
 
+const samples = [
+  {
+    input: sampleFLACFilePath,
+    expectedDuration: expectedFLACAudioDuration,
+    description: 'flac file',
+  },
+  {
+    input: sampleWAVFilePath,
+    expectedDuration: expectedWAVAudioDuration,
+    description: 'wav file',
+  },
+  {
+    input: sampleWEBMFilePath,
+    expectedDuration: expectedWEBMAudioDuration,
+    description: 'webm file',
+  },
+  {
+    input: sampleOGGFilePath,
+    expectedDuration: expectedOGGAudioDuration,
+    description: 'ogg file',
+  },
+  {
+    input: sampleOGGWithSpacesFilePath,
+    expectedDuration: expectedOGGAudioDuration,
+    description: 'file with spaces in its name',
+  },
+]
+
 describe.each`
   fn                           | description
   ${getDuration}               | ${'default export'}
   ${getAudioDurationInSeconds} | ${'named export'}
 `('when using $description', ({ fn }) => {
-  it.each`
-    input                          | expectedDuration             | description
-    ${sampleFLACFilePath}          | ${expectedFLACAudioDuration} | ${'flac file'}
-    ${sampleWAVFilePath}           | ${expectedWAVAudioDuration}  | ${'wav file'}
-    ${sampleWEBMFilePath}          | ${expectedWEBMAudioDuration} | ${'webm file'}
-    ${sampleOGGFilePath}           | ${expectedOGGAudioDuration}  | ${'ogg file'}
-    ${sampleOGGWithSpacesFilePath} | ${expectedOGGAudioDuration}  | ${'file with spaces in its name'}
-  `(
+  it.each(samples)(
     'should return proper duration for $description',
     async ({ input, expectedDuration }) => {
       await expect(fn(input)).resolves.toBeCloseTo(
+        expectedDuration,
+        expectedAudioDurationThreshold,
+      )
+    },
+  )
+
+  it.each(samples)(
+    'should return proper duration for $description as Uint8Array and Buffer',
+    async ({ input, expectedDuration }) => {
+      const buffer = await readFile(input)
+      const bytes = new Uint8Array(
+        buffer.buffer,
+        buffer.byteOffset,
+        buffer.byteLength,
+      )
+
+      await expect(fn(bytes)).resolves.toBeCloseTo(
+        expectedDuration,
+        expectedAudioDurationThreshold,
+      )
+      await expect(fn(buffer)).resolves.toBeCloseTo(
         expectedDuration,
         expectedAudioDurationThreshold,
       )
