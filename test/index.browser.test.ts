@@ -29,21 +29,17 @@ describe('in a browser', () => {
     ${getDuration}               | ${'default export'}
     ${getAudioDurationInSeconds} | ${'named export'}
   `('when using $description', ({ fn }) => {
-    it.each(samples)(
-      'should return proper duration for a $fileName blob',
-      async ({ fileName, expectedDuration }) => {
+    describe.each(samples)('$fileName', ({ fileName, expectedDuration }) => {
+      it('should return proper duration for a blob', async () => {
         const blob = await fetchSample(fileName)
 
         await expect(fn(blob)).resolves.toBeCloseTo(
           expectedDuration,
           expectedAudioDurationThreshold,
         )
-      },
-    )
+      })
 
-    it.each(samples)(
-      'should return proper duration for a $fileName file',
-      async ({ fileName, expectedDuration }) => {
+      it('should return proper duration for a file', async () => {
         const blob = await fetchSample(fileName)
         const file = new File([blob], fileName, { type: blob.type })
 
@@ -51,12 +47,9 @@ describe('in a browser', () => {
           expectedDuration,
           expectedAudioDurationThreshold,
         )
-      },
-    )
+      })
 
-    it.each(samples)(
-      'should return proper duration for a $fileName Uint8Array',
-      async ({ fileName, expectedDuration }) => {
+      it('should return proper duration for a Uint8Array', async () => {
         const blob = await fetchSample(fileName)
         const bytes = new Uint8Array(await blob.arrayBuffer())
         const paddedBytes = new Uint8Array(bytes.length + 2)
@@ -71,8 +64,8 @@ describe('in a browser', () => {
           expectedDuration,
           expectedAudioDurationThreshold,
         )
-      },
-    )
+      })
+    })
 
     it.each(['Blob', 'File', 'Uint8Array'] as const)(
       'should accept a %s created in another browser realm',

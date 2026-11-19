@@ -1,10 +1,7 @@
 import type { IAudioMetadata } from 'music-metadata'
 
 // Intrinsic getters accept cross-realm values without trusting toStringTag.
-const blobSize =
-  typeof Blob === 'undefined'
-    ? undefined
-    : Object.getOwnPropertyDescriptor(Blob.prototype, 'size')?.get
+const blobSize = Object.getOwnPropertyDescriptor(Blob.prototype, 'size')?.get
 const typedArrayName = Object.getOwnPropertyDescriptor(
   Object.getPrototypeOf(Uint8Array.prototype),
   Symbol.toStringTag,

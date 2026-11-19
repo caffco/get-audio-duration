@@ -82,19 +82,15 @@ describe.each`
   ${getDuration}               | ${'default export'}
   ${getAudioDurationInSeconds} | ${'named export'}
 `('when using $description', ({ fn }) => {
-  it.each(inputs)(
-    'should return the duration from music-metadata for a $description',
-    async ({ input }) => {
+  describe.each(inputs)('$description', ({ input, parser }) => {
+    it('should return the duration from music-metadata', async () => {
       await expect(fn(input)).resolves.toBeCloseTo(
         42.0,
         expectedAudioDurationThreshold,
       )
-    },
-  )
+    })
 
-  it.each(inputs)(
-    'should pass a $description unchanged to the correct parser with duration: true',
-    async ({ input, parser }) => {
+    it('should pass the input unchanged to the correct parser with duration: true', async () => {
       await fn(input)
 
       const args =
@@ -107,12 +103,9 @@ describe.each`
           expect(otherParser).not.toHaveBeenCalled()
         }
       }
-    },
-  )
+    })
 
-  it.each(inputs)(
-    'should prefer the duration of the first audio track for a $description',
-    async ({ input, parser }) => {
+    it('should prefer the duration of the first audio track', async () => {
       vi.mocked(parser).mockResolvedValueOnce({
         format: {
           duration: 42.0,
@@ -124,19 +117,16 @@ describe.each`
       } as never)
 
       await expect(fn(input)).resolves.toBe(7.0)
-    },
-  )
+    })
 
-  it.each(inputs)(
-    'should reject when music-metadata finds no duration for a $description',
-    async ({ input, parser }) => {
+    it('should reject when music-metadata finds no duration', async () => {
       vi.mocked(parser).mockResolvedValueOnce({
         format: { trackInfo: [] },
       } as never)
 
       await expect(fn(input)).rejects.toThrow('No duration found!')
-    },
-  )
+    })
+  })
 
   it.each(unsupportedInputs)(
     'should reject an unsupported $description without calling a parser',

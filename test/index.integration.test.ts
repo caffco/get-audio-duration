@@ -58,19 +58,15 @@ describe.each`
   ${getDuration}               | ${'default export'}
   ${getAudioDurationInSeconds} | ${'named export'}
 `('when using $description', ({ fn }) => {
-  it.each(samples)(
-    'should return proper duration for $description',
-    async ({ input, expectedDuration }) => {
+  describe.each(samples)('$description', ({ input, expectedDuration }) => {
+    it('should return proper duration for a file path', async () => {
       await expect(fn(input)).resolves.toBeCloseTo(
         expectedDuration,
         expectedAudioDurationThreshold,
       )
-    },
-  )
+    })
 
-  it.each(samples)(
-    'should return proper duration for $description as Uint8Array and Buffer',
-    async ({ input, expectedDuration }) => {
+    it('should return proper duration for a Uint8Array and Buffer', async () => {
       const buffer = await readFile(input)
       const bytes = new Uint8Array(
         buffer.buffer,
@@ -86,8 +82,8 @@ describe.each`
         expectedDuration,
         expectedAudioDurationThreshold,
       )
-    },
-  )
+    })
+  })
 
   it('should throw an error if not an audio stream', async () => {
     const input = resolvePath(__dirname, __filename)
