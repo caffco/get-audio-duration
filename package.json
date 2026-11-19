@@ -8,7 +8,7 @@
   "main": "dist/commonjs/index.js",
   "module": "dist/es6/index.js",
   "dependencies": {
-    "music-metadata": "^12.5.0"
+    "music-metadata": "^12.7.0"
   },
   "devDependencies": {
     "@biomejs/biome": "^2.1.3",
