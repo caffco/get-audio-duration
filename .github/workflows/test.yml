@@ -35,10 +35,12 @@ jobs:
         run: pnpm test
       - name: Install Playwright Chromium
         run: pnpm exec playwright install --with-deps chromium
+      - name: Build
+        run: pnpm build
       - name: Package entry points and TypeScript declarations
-        run: pnpm test:package
+        run: pnpm test:package:dist
       - name: Browser tests
-        run: pnpm test:browser
+        run: pnpm test:browser:dist
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v7.1.1
         with:
