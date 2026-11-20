@@ -1,5 +1,5 @@
+import getDuration, { getAudioDurationInSeconds } from 'get-audio-duration'
 import { describe, expect, it } from 'vitest'
-import getDuration, { getAudioDurationInSeconds } from '../src'
 
 const expectedAudioDurationThreshold = -1
 

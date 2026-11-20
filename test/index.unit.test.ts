@@ -1,7 +1,7 @@
 import { Buffer } from 'node:buffer'
 import { parseBlob, parseBuffer, parseFile } from 'music-metadata'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
-import getDuration, { getAudioDurationInSeconds } from '../src'
+import getDuration, { getAudioDurationInSeconds } from '../src/index.js'
 
 vi.mock('music-metadata', () => ({
   parseBlob: vi.fn(),

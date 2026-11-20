@@ -5,8 +5,27 @@
   "author": "Lluís Ulzurrun de Asanza Sàez <me@llu.is> (http://llu.is)",
   "license": "MIT",
   "repository": "caffco/get-audio-duration",
-  "main": "dist/commonjs/index.js",
-  "module": "dist/es6/index.js",
+  "type": "module",
+  "main": "dist/index.cjs",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      },
+      "default": "./dist/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "engines": {
+    "node": ">=22"
+  },
   "dependencies": {
     "music-metadata": "^12.7.0"
   },
@@ -31,14 +50,18 @@
   "scripts": {
     "lint:commit": "git-conventional-commits commit-msg-hook",
     "lint:source": "biome lint .",
-    "lint:build": "es-check es5 dist/commonjs/*.js",
-    "build": "run-s build:* lint:build",
-    "build:commonjs": "tsc --p tsconfig.commonjs.json",
-    "build:es6": "tsc --p tsconfig.es6.json",
+    "lint:build": "es-check es2022 --module \"dist/**/*.js\" && es-check es2022 \"dist/**/*.cjs\"",
+    "clean": "node scripts/clean.mjs",
+    "build": "run-s clean build:compile lint:build",
+    "build:compile": "tsc --project tsconfig.build.json",
     "test": "vitest --coverage --project node",
-    "test:browser": "vitest --project browser",
+    "test:browser": "run-s build test:browser:dist",
+    "test:browser:dist": "vitest --project browser",
+    "test:types": "tsc --project test/types/tsconfig.json",
+    "test:package": "run-s build test:package:dist",
+    "test:package:dist": "run-s test:types && node --test test/package.test.mjs",
     "format": "biome format --write .",
-    "prepublishOnly": "CI=1 run-s test build",
+    "prepublishOnly": "CI=1 run-s test test:package",
     "update:changelog": "git-conventional-commits changelog --file 'CHANGELOG.md'",
     "update:version": "TEMP_PACKAGE_JSON=$(mktemp) &&git-conventional-commits version 2>/dev/null | xargs -I{} jq --arg newVersion {} '.version = $newVersion' package.json > \"$TEMP_PACKAGE_JSON\" && rm package.json && mv \"$TEMP_PACKAGE_JSON\" package.json",
     "prepare": "husky"
