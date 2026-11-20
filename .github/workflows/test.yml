@@ -15,29 +15,47 @@ jobs:
     steps:
       - name: Install git
         run: |
-          sudo apt-get update 
+          sudo apt-get update
           sudo apt-get install -y git
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
-        with:
-          node-version: ${{ matrix.node-version }}
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v7.0.1
         with:
           fetch-depth: 0
-      - name: Install dependencies
-        run: yarn --frozen-lockfile
-      - name: Lint
-        run: yarn lint:source
-      - name: Tests
-        run: yarn test
-      - name: Install Playwright Chromium
-        run: npx playwright install --with-deps chromium
-      - name: Browser tests
-        run: yarn test:browser
-      - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v4
+      - name: Install pnpm
+        uses: pnpm/action-setup@v6.1.1
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v7.1.0
         with:
-          file: ./coverage/lcov.info
+          node-version: ${{ matrix.node-version }}
+          cache: pnpm
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+      - name: Lint
+        run: pnpm lint:source
+      - name: Tests
+        run: pnpm test
+      - name: Install Playwright Chromium
+        run: pnpm exec playwright install --with-deps chromium
+      - name: Browser tests
+        run: pnpm test:browser
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v7.1.1
+        with:
+          files: ./coverage/lcov.info
           token: ${{ secrets.CODECOV_TOKEN }}
       - name: Build
-        run: yarn build
+        run: pnpm build
+
+  actions-lockfile:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v7.0.1
+        with:
+          persist-credentials: false
+      - name: Install gh-actions-lock
+        run: gh extension install github/gh-actions-lock --pin v0.5.1
+      - name: Verify actions lockfile
+        run: gh actions-lock --verify --fail-on-warning
