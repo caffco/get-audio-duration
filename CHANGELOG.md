@@ -1,3 +1,11 @@
+## **5.1.0**&emsp;<sub><sup>2026-11-20 ([dd72fb9...1c010f4](https://github.com/caffco/get-audio-duration/compare/dd72fb9b57c96312c0e14588be1052a9eb53bb8d...1c010f4e922e88cd3583ef2b1272fac13fbe406e?diff=split))</sup></sub>
+
+### Features
+
+- parse file paths directly and support Uint8Array inputs \(\#629\) ([6eae6c2](https://github.com/caffco/get-audio-duration/commit/6eae6c2a3303315d1c3b1508d3ff5468beb808bf))
+
+<br>
+
 ## **5.0.0**&emsp;<sub><sup>2026-11-16 ([4e841b7...64d03bd](https://github.com/caffco/get-audio-duration/compare/4e841b745bb2598890f0ea9529ffc66213dd06d7...64d03bdcf1f72917e060cbc1eb6ecdfc60f5ce72?diff=split))</sup></sub>
 
 ### Features
