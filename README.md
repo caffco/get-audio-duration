@@ -4,7 +4,6 @@
 ![Build Status](https://github.com/caffco/get-audio-duration/workflows/test/badge.svg)
 [![codecov](https://codecov.io/gh/caffco/get-audio-duration/graph/badge.svg?token=oOoNz6ghSM)](https://codecov.io/gh/caffco/get-audio-duration)
 [![License][license-image]][license-url]
-[![NPM bundle size (minified)][bundle-size-image]][npm-url]
 [![Downloads][downloads-image]][downloads-url]
 
 Get the duration of audio files with [music-metadata](https://github.com/Borewit/music-metadata).
@@ -77,13 +76,8 @@ Inputs created in another browser realm, such as a same-origin iframe, are also 
 
 Unsupported input types reject with a `TypeError`.
 
-[music-metadata](https://github.com/Borewit/music-metadata) is a pure
-JavaScript/TypeScript audio metadata parser with no external binary
-dependency, replacing the previous `@ffprobe-installer/ffprobe` backend.
-
 [npm-image]: https://img.shields.io/npm/v/get-audio-duration.svg
 [npm-url]: https://npmjs.org/package/get-audio-duration
-[bundle-size-image]: https://img.shields.io/bundlephobia/min/get-audio-duration.svg
 [license-image]: http://img.shields.io/npm/l/get-audio-duration.svg
 [license-url]: LICENSE
 [downloads-image]: http://img.shields.io/npm/dm/get-audio-duration.svg
