@@ -11,8 +11,11 @@
     "sourceMap": true,
     "types": ["node"],
     "moduleResolution": "NodeNext",
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "paths": {
+      "get-audio-duration": ["./src/index.ts"]
+    }
   },
   "include": ["src/**/*", "test/**/*"],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules", "test/types"]
 }

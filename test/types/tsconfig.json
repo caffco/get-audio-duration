@@ -3,7 +3,9 @@
   "compilerOptions": {
     "module": "Node16",
     "moduleResolution": "Node16",
-    "noEmit": true
+    "noEmit": true,
+    "paths": {}
   },
-  "include": ["./*.cts", "./*.mts"]
+  "include": ["./*.cts", "./*.mts"],
+  "exclude": []
 }
