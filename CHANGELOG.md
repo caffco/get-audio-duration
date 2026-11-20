@@ -1,3 +1,36 @@
+## **6.0.0**&emsp;<sub><sup>2026-11-20 ([8bb494c...8930fda](https://github.com/caffco/get-audio-duration/compare/8bb494c0e7e2674f1d62672c87030a4f7cfed6e2...8930fdacc159e0b2be481c76dd3ae93c4d1fdf3b?diff=split))</sup></sub>
+
+### Features
+
+- publish ESM\-first package with CommonJS compatibility \(\#632\) ([8930fda](https://github.com/caffco/get-audio-duration/commit/8930fdacc159e0b2be481c76dd3ae93c4d1fdf3b))
+
+
+### BREAKING CHANGES
+-  publish ESM\-first package with CommonJS compatibility \(\#632\) ([8930fda](https://github.com/caffco/get-audio-duration/commit/8930fdacc159e0b2be481c76dd3ae93c4d1fdf3b))
+<br>
+
+## **6.0.0**&emsp;<sub><sup>2026-11-20 ([8bb494c...8930fda](https://github.com/caffco/get-audio-duration/compare/8bb494c0e7e2674f1d62672c87030a4f7cfed6e2...8930fdacc159e0b2be481c76dd3ae93c4d1fdf3b?diff=split))</sup></sub>
+
+### Features
+
+- publish ESM\-first package with CommonJS compatibility \(\#632\) ([8930fda](https://github.com/caffco/get-audio-duration/commit/8930fdacc159e0b2be481c76dd3ae93c4d1fdf3b))
+
+
+### BREAKING CHANGES
+-  publish ESM\-first package with CommonJS compatibility \(\#632\) ([8930fda](https://github.com/caffco/get-audio-duration/commit/8930fdacc159e0b2be481c76dd3ae93c4d1fdf3b))
+<br>
+
+## **6.0.0**&emsp;<sub><sup>2026-11-20 ([8bb494c...8930fda](https://github.com/caffco/get-audio-duration/compare/8bb494c0e7e2674f1d62672c87030a4f7cfed6e2...8930fdacc159e0b2be481c76dd3ae93c4d1fdf3b?diff=split))</sup></sub>
+
+### Features
+
+- publish ESM\-first package with CommonJS compatibility \(\#632\) ([8930fda](https://github.com/caffco/get-audio-duration/commit/8930fdacc159e0b2be481c76dd3ae93c4d1fdf3b))
+
+
+### BREAKING CHANGES
+-  publish ESM\-first package with CommonJS compatibility \(\#632\) ([8930fda](https://github.com/caffco/get-audio-duration/commit/8930fdacc159e0b2be481c76dd3ae93c4d1fdf3b))
+<br>
+
 ## **5.1.0**&emsp;<sub><sup>2026-11-20 ([dd72fb9...1c010f4](https://github.com/caffco/get-audio-duration/compare/dd72fb9b57c96312c0e14588be1052a9eb53bb8d...1c010f4e922e88cd3583ef2b1272fac13fbe406e?diff=split))</sup></sub>
 
 ### Features
