@@ -16,7 +16,8 @@ Get the duration of audio files with [music-metadata](https://github.com/Borewit
 - **Browser:** Give a `Blob`, a `File` or a `Uint8Array`. A file path does not
   work in the browser. The tests use Vite and Chromium.
 
-The package is ESM-first (`"type": "module"`), with a CommonJS compatibility entry and TypeScript declarations for both module formats.
+The package uses ES modules (`"type": "module"`). It also has a CommonJS entry
+point. TypeScript declarations are available for the two module formats.
 
 # Install
 
@@ -46,7 +47,10 @@ getAudioDurationInSeconds('audio.flac').then((duration) => {
 })
 ```
 
-Both module formats also expose `getAudioDurationInSeconds` as a default export (available as `require('get-audio-duration').default` in CommonJS). The CommonJS entry asynchronously loads the same ESM implementation and preserves the promise-based API.
+The two module formats also export `getAudioDurationInSeconds` as the default
+export. In CommonJS, use `require('get-audio-duration').default`. The CommonJS
+entry point loads the ES module implementation. The function always returns a
+promise.
 
 ## Browser
 
