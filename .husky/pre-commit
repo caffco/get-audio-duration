@@ -1,4 +1,4 @@
 #!/usr/bin/env sh
 
-yarn lint:source
-yarn format
+pnpm lint:source
+pnpm format

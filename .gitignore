@@ -1,9 +1,8 @@
-
-.DS_Store*
-*.log
 *.gz
-
-node_modules
-coverage
+*.log
+.direnv
+.DS_Store*
 .nyc_output
+coverage
 dist
+node_modules
