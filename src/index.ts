@@ -1,25 +1,48 @@
-const toBlob = async (input: string | Blob): Promise<Blob> => {
-  if (typeof input !== 'string') {
-    return input
-  }
+import type { IAudioMetadata } from 'music-metadata'
 
-  const { openAsBlob } = await import('node:fs')
-  return openAsBlob(input)
+// Intrinsic getters accept cross-realm values without trusting toStringTag.
+const blobSize = Object.getOwnPropertyDescriptor(Blob.prototype, 'size')?.get
+const typedArrayName = Object.getOwnPropertyDescriptor(
+  Object.getPrototypeOf(Uint8Array.prototype),
+  Symbol.toStringTag,
+)?.get
+
+const isBlob = (input: unknown): input is Blob => {
+  try {
+    return typeof blobSize?.call(input) === 'number'
+  } catch {
+    return false
+  }
 }
+
+const isUint8Array = (input: unknown): input is Uint8Array =>
+  typedArrayName?.call(input) === 'Uint8Array'
 
 /**
  * Returns a promise that resolves with the duration of the given audio in
  * seconds.
  *
- * @param input Path to the file (Node.js only), or a `Blob` / `File` (Node.js
- * and browsers).
+ * @param input Path to the file (Node.js only), or a `Blob`, `File` or
+ * `Uint8Array` (Node.js and browsers).
  */
 const getAudioDurationInSeconds = async (
-  input: string | Blob,
+  input: string | Blob | Uint8Array,
 ): Promise<number> => {
-  const { parseBlob, TrackType } = await import('music-metadata')
+  let metadata: IAudioMetadata
+  if (typeof input === 'string') {
+    const { parseFile } = await import('music-metadata')
+    metadata = await parseFile(input, { duration: true })
+  } else if (isUint8Array(input)) {
+    const { parseBuffer } = await import('music-metadata')
+    metadata = await parseBuffer(input, undefined, { duration: true })
+  } else if (isBlob(input)) {
+    const { parseBlob } = await import('music-metadata')
+    metadata = await parseBlob(input, { duration: true })
+  } else {
+    throw new TypeError('Expected a file path, Blob, File, or Uint8Array')
+  }
 
-  const metadata = await parseBlob(await toBlob(input), { duration: true })
+  const { TrackType } = await import('music-metadata')
 
   // Match ffprobe's -select_streams a:0: prefer the first audio track's
   // duration, fall back to format.duration (e.g. video-only input).

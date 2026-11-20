@@ -12,9 +12,9 @@ Get the duration of audio files with [music-metadata](https://github.com/Borewit
 # Supported platforms
 
 - **Node.js:** Requires [Node.js ≥ 22](https://nodejs.org/en/about/previous-releases).
-  Give a file path, a `Blob` or a `File`.
-- **Browser:** Give a `Blob` or a `File`. A file path does not work in the
-  browser. The tests use Vite and Chromium.
+  Give a file path, a `Blob`, a `File` or a `Uint8Array` (including `Buffer`).
+- **Browser:** Give a `Blob`, a `File` or a `Uint8Array`. A file path does not
+  work in the browser. The tests use Vite and Chromium.
 
 # Install
 
@@ -38,6 +38,19 @@ getAudioDurationInSeconds(file).then((duration) => {
   console.log(duration)
 })
 ```
+
+You can also pass audio bytes directly, without converting them to a `Blob`:
+
+```js
+const response = await fetch('audio.flac')
+const bytes = new Uint8Array(await response.arrayBuffer())
+const duration = await getAudioDurationInSeconds(bytes)
+console.log(duration)
+```
+
+Inputs created in another browser realm, such as a same-origin iframe, are also supported.
+
+Unsupported input types reject with a `TypeError`.
 
 [music-metadata](https://github.com/Borewit/music-metadata) is a pure
 JavaScript/TypeScript audio metadata parser with no external binary

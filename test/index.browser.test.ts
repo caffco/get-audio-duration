@@ -29,21 +29,17 @@ describe('in a browser', () => {
     ${getDuration}               | ${'default export'}
     ${getAudioDurationInSeconds} | ${'named export'}
   `('when using $description', ({ fn }) => {
-    it.each(samples)(
-      'should return proper duration for a $fileName blob',
-      async ({ fileName, expectedDuration }) => {
+    describe.each(samples)('$fileName', ({ fileName, expectedDuration }) => {
+      it('should return proper duration for a blob', async () => {
         const blob = await fetchSample(fileName)
 
         await expect(fn(blob)).resolves.toBeCloseTo(
           expectedDuration,
           expectedAudioDurationThreshold,
         )
-      },
-    )
+      })
 
-    it.each(samples)(
-      'should return proper duration for a $fileName file',
-      async ({ fileName, expectedDuration }) => {
+      it('should return proper duration for a file', async () => {
         const blob = await fetchSample(fileName)
         const file = new File([blob], fileName, { type: blob.type })
 
@@ -51,8 +47,61 @@ describe('in a browser', () => {
           expectedDuration,
           expectedAudioDurationThreshold,
         )
+      })
+
+      it('should return proper duration for a Uint8Array', async () => {
+        const blob = await fetchSample(fileName)
+        const bytes = new Uint8Array(await blob.arrayBuffer())
+        const paddedBytes = new Uint8Array(bytes.length + 2)
+        paddedBytes.set(bytes, 1)
+        const subarray = paddedBytes.subarray(1, bytes.length + 1)
+
+        await expect(fn(bytes)).resolves.toBeCloseTo(
+          expectedDuration,
+          expectedAudioDurationThreshold,
+        )
+        await expect(fn(subarray)).resolves.toBeCloseTo(
+          expectedDuration,
+          expectedAudioDurationThreshold,
+        )
+      })
+    })
+
+    it.each(['Blob', 'File', 'Uint8Array'] as const)(
+      'should accept a %s created in another browser realm',
+      async (inputType) => {
+        const { fileName, expectedDuration } = samples[0]
+        const blob = await fetchSample(fileName)
+        const bytes = new Uint8Array(await blob.arrayBuffer())
+        const iframe = document.createElement('iframe')
+        document.body.append(iframe)
+
+        try {
+          const realm = iframe.contentWindow as unknown as Pick<
+            typeof globalThis,
+            'Blob' | 'File' | 'Uint8Array'
+          >
+          const input =
+            inputType === 'Blob'
+              ? new realm.Blob([bytes])
+              : inputType === 'File'
+                ? new realm.File([bytes], fileName)
+                : new realm.Uint8Array(bytes)
+
+          expect(input).not.toBeInstanceOf(globalThis[inputType])
+          await expect(fn(input)).resolves.toBeCloseTo(
+            expectedDuration,
+            expectedAudioDurationThreshold,
+          )
+        } finally {
+          iframe.remove()
+        }
       },
     )
+
+    it('should reject a Uint8Array that is not audio', async () => {
+      await expect(fn(new Uint8Array([1, 2, 3]))).rejects.toThrow()
+    })
 
     it('should reject a blob that is not audio', async () => {
       const blob = new Blob(['not audio'], { type: 'text/plain' })
